@@ -1,0 +1,57 @@
+<window id="winCooperativaEditar" 
+        border="normal" 
+        vflex="min" 
+        width="500px" 
+        apply="org.zkoss.bind.BindComposer" 
+        viewModel="@id('vm') @init('com.demo.control.mvvm.CooperativaControl')">
+	<caption src="/img/user.png" height="20px" style="font-weight: bold; font-size: medium; color: #636363;" 
+             label="Cooperativa - MVVM"/>
+    <vlayout>
+        <grid >
+            <columns>
+                <column align="right" hflex="min"/>
+                <column/>
+            </columns>
+            <rows>
+                <row>
+                    <cell style="font-weight: bold; color:#636363;">Numero :</cell>
+                    <cell><label id="numero" value="@load(vm.cooperativa.id)"/></cell>
+                </row>
+                <row>
+                    <cell style="font-weight: bold; color:#636363;">Nombre :</cell>
+                    <cell><textbox id="nombre" 
+                                   value="@bind(vm.cooperativa.nombre)" 
+                                   width="200px"
+                                   constraint="no empty: Debe ingresar el nombre"
+                                   maxlength="255"/>
+                    </cell>
+                </row>
+                <row>
+                    <cell style="font-weight: bold; color:#636363;">Direccion :</cell>
+                    <cell><textbox id="direccion" 
+                                   value="@bind(vm.cooperativa.direccion)" 
+                                   width="200px"
+  
+                                   maxlength="50"/>
+                    </cell>
+                </row>
+                <row>
+                   <cell style="font-weight: bold; color:#636363;">Telefono :</cell>
+                    <cell><textbox id="telefono" 
+                                   value="@bind(vm.cooperativa.telefono)" 
+                                   width="200px"
+  
+                                   maxlength="50"/>
+                    </cell>
+                </row>
+                              
+            </rows>
+        </grid>
+
+        <!-- Los iconos listados con iconSclass son de: http://fontawesome.io/icons/ -->
+        <hlayout>
+            <button id="grabar" label="Grabar" iconSclass="z-icon-save"     onClick="@command('grabar', ventana=winCooperativaEditar)" />
+            <button id="salir"  label="Salir"  iconSclass="z-icon-sign-out" onClick="@command('salir', ventana=winCooperativaEditar)" />
+        </hlayout>
+    </vlayout>
+</window>

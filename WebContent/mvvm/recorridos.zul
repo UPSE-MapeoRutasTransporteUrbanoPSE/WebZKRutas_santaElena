@@ -1,0 +1,75 @@
+<window id="winRecorridosEditar" border="normal" vflex="min"
+	width="500px" apply="org.zkoss.bind.BindComposer"
+	viewModel="@id('vm') @init('com.demo.control.mvvm.BusesrutaControl')">
+	<caption src="/img/user.png" height="20px"
+		style="font-weight: bold; font-size: medium; color: #636363;"
+		label="Recorridos - MVVM" />
+	<vlayout>
+		<grid>
+			<columns>
+				<column align="right" hflex="min" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<cell style="font-weight: bold; color:#636363;">
+						Id :
+					</cell>
+					<cell>
+						<label id="id" value="@load(vm.busrutas.id)" />
+					</cell>
+				</row>
+				
+				
+				<row>
+                    
+                    <cell style="font-weight: bold; color:#636363;">Fecha :</cell>
+                    <cell><datebox id="fech"  value="@bind(vm.busrutas.fecha)" 
+                    				width="100px"
+                    				constraint="no past: No se puede agendar al pasado."/></cell>
+                </row>
+				
+
+				<row>
+					<cell style="font-weight: bold; color:#636363;">
+						Buses :
+					</cell>
+					<cell>
+						<combobox model="@load(vm.bus)"
+							selectedItem="@bind(vm.busrutas.bus)"
+							value="@load(vm.busrutas.bus.placa)" width="200px">
+							<template name="model">
+								<comboitem label="@load(each.placa)"
+									value="@load(each)" />
+							</template>
+						</combobox>
+					</cell>
+				</row>
+				<row>
+					<cell style="font-weight: bold; color:#636363;">
+						Rutas :
+					</cell>
+					<cell>
+						<combobox model="@load(vm.ruta)"
+							selectedItem="@bind(vm.busrutas.ruta)"
+							value="@load(vm.busrutas.ruta.ruta)" width="200px">
+							<template name="model">
+								<comboitem label="@load(each.ruta)"
+									value="@load(each)" />
+							</template>
+						</combobox>
+					</cell>
+				</row>
+			</rows>
+		</grid>
+
+		<!-- Los iconos listados con iconSclass son de: http://fontawesome.io/icons/ -->
+		<hlayout>
+			<button id="grabar" label="Grabar" iconSclass="z-icon-save"
+				onClick="@command('grabar', ventana=winRecorridosEditar)" />
+			<button id="salir" label="Salir"
+				iconSclass="z-icon-sign-out"
+				onClick="@command('salir', ventana=winRecorridosEditar)" />
+		</hlayout>
+	</vlayout>
+</window>

@@ -1,0 +1,66 @@
+<window id="winRutaEditar" 
+        border="normal" 
+        vflex="min" 
+        width="500px" 
+        apply="org.zkoss.bind.BindComposer" 
+        viewModel="@id('vm') @init('com.demo.control.mvvm.RutasControl')">
+	<caption src="/img/user.png" height="20px" style="font-weight: bold; font-size: medium; color: #636363;" 
+             label="Ruta - MVVM"/>
+    <vlayout>
+        <grid >
+            <columns>
+                <column align="right" hflex="min"/>
+                <column/>
+            </columns>
+            <rows>
+                <row>
+                    <cell style="font-weight: bold; color:#636363;">Numero :</cell>
+                    <cell><label id="numero" value="@load(vm.ruta.id)"/></cell>
+                </row>
+                <row>
+                    <cell style="font-weight: bold; color:#636363;">Ruta :</cell>
+                    <cell><textbox id="ruta" 
+                                   value="@bind(vm.ruta.ruta)" 
+                                   width="200px"
+                                   constraint="no empty: Debe ingresar la ruta"
+                                   maxlength="255"/>
+                    </cell>
+                </row>
+                <row>
+                    <cell style="font-weight: bold; color:#636363;">Horario :</cell>
+                    <cell><textbox id="horario" 
+                                   value="@bind(vm.ruta.horario)" 
+                                   width="200px"
+  
+                                   maxlength="50"/>
+                    </cell>
+                </row>
+                <row>
+                   <cell style="font-weight: bold; color:#636363;">Costo :</cell>
+                    <cell><textbox id="costo" 
+                                   value="@bind(vm.ruta.costo)" 
+                                   width="200px"
+  
+                                   maxlength="50"/>
+                    </cell>
+                </row>
+                <row>
+                   <cell style="font-weight: bold; color:#636363;">Tiempo :</cell>
+                    <cell><textbox id="tiempo" 
+                                   value="@bind(vm.ruta.tiempo)" 
+                                   width="200px"
+  
+                                   maxlength="50"/>
+                    </cell>
+                </row>
+                
+            </rows>
+        </grid>
+
+        <!-- Los iconos listados con iconSclass son de: http://fontawesome.io/icons/ -->
+        <hlayout>
+            <button id="grabar" label="Grabar" iconSclass="z-icon-save"     onClick="@command('grabar', ventana=winRutaEditar)" />
+            <button id="salir"  label="Salir"  iconSclass="z-icon-sign-out" onClick="@command('salir', ventana=winRutaEditar)" />
+        </hlayout>
+    </vlayout>
+</window>

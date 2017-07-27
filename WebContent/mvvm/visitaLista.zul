@@ -1,0 +1,50 @@
+<?page title="Lista de visitas" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window apply="org.zkoss.bind.BindComposer" 
+            viewModel="@id('vm') @init('com.demo.control.mvvm.VisitaLista')"
+	        hflex="1" vflex="1" 
+	        title="VISITAS" border="normal">
+		<vlayout vflex="1">
+			<toolbar>
+				<toolbarbutton label="Nuevo"    iconSclass="z-icon-plus"     onClick="@command('nuevo')"/>
+				<toolbarbutton label="Editar"   iconSclass="z-icon-pencil"   onClick="@command('editar')"/>
+				
+				<separator orient="vertical" width="50px" />
+				
+			</toolbar>
+			<hlayout>
+				<textbox value="@bind(vm.textoBuscar)" hflex="1" />
+				<button label="Buscar!" iconSclass="z-icon-search" onClick="@command('buscar')" />
+			</hlayout>
+			<hlayout vflex="1" hflex="1">
+				<listbox model="@load(vm.visita)" 
+						 selectedItem="@bind(vm.visitaSeleccionada)" 
+						 hflex="1" vflex="1">
+					<listhead>
+					<listheader label="NUMERO" />
+					<listheader label="FECHA"  />
+						<listheader label="COORDENADAS" />
+						<listheader label="VALORACION" />
+						<listheader label="SITIO" />
+						<listheader label="LUGAR" />
+						
+					</listhead>
+					<template name="model">
+						<listitem>
+						<listcell label="@load(each.id)" />
+						<listcell label="@load(each.fecha)" />
+							<listcell label="@load(each.coordenadas)" />
+							<listcell label="@load(each.valoracion)" />
+							<listcell label="@load(each.sitiosIntere.descripcion)" />
+							<listcell label="@load(each.sitiosIntere.lugare.descripcion)" />
+							
+							
+							
+						</listitem>
+					</template>
+				</listbox>
+				
+			</hlayout>
+		</vlayout>
+	</window>
+</zk>

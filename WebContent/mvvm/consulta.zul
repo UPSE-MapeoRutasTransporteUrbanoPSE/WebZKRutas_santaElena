@@ -1,0 +1,69 @@
+<?page title="Consulta de Recorridos" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('com.demo.control.mvvm.RecorridoLista')"
+		hflex="1" vflex="1" title="Recorridos-Buses-Por-Fecha - MVVM" border="normal">
+		<vlayout vflex="1">
+
+			<grid>
+				<columns>
+					<column align="right" hflex="min" />
+					<column />
+				</columns>
+				<rows>
+					<row>
+
+						<cell
+							style="font-weight: bold; color:#636363;">
+							Fecha :
+						</cell>
+						<cell>
+							<datebox id="fecha" value="@bind(vm.fecha)" width="100px"
+								onCreate="self.value = new Date()" />
+						</cell>
+					</row>
+					<row>
+						<cell
+							style="font-weight: bold; color:#636363;">
+							Rutas :
+						</cell>
+						<cell>
+							<combobox id="ruta" model="@load(vm.ruta)"
+								selectedItem="@bind(vm.rutas)">
+								<template name="model">
+									<comboitem label="@load(each.ruta)"
+										value="@load(each.ruta)" />
+								</template>
+							</combobox>
+						</cell>
+
+						<button label="Buscar!"
+							iconSclass="z-icon-search" onClick="@command('buscar')" />
+					</row>
+				</rows>
+
+			</grid>
+			<hlayout>
+				<listbox model="@load(vm.recorrido)">
+					<listhead>
+						<listheader label="Cooperativa" />
+						<listheader label="Bus" />
+						<listheader label="Numero" />
+						<listheader label="Fecha" />
+						<listheader label="Ruta" />
+					</listhead>
+					<template name="model">
+						<listitem>
+							<listcell
+								label="@load(each.bus.cooperativa.nombre)" />
+							<listcell label="@load(each.bus.placa)" />
+							<listcell label="@load(each.bus.numero)" />
+							<listcell label="@load(each.fecha)" />
+							<listcell label="@load(each.ruta.ruta)" />
+						</listitem>
+					</template>
+				</listbox>
+			</hlayout>
+		</vlayout>
+	</window>
+</zk>

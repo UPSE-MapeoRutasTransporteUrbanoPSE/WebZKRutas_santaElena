@@ -1,0 +1,38 @@
+<?page title="Lista de Personas" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window apply="org.zkoss.bind.BindComposer" 
+            viewModel="@id('vm') @init('com.demo.control.mvvm.BusLista')"
+	        hflex="1" vflex="1" 
+	        title="Buses - MVVM" border="normal">
+		<vlayout vflex="1">
+			<toolbar>
+				<toolbarbutton label="Nuevo"    iconSclass="z-icon-plus"     onClick="@command('nuevo')"/>
+				<toolbarbutton label="Editar"   iconSclass="z-icon-pencil"   onClick="@command('editar')"/>
+				
+				</toolbar>
+			<hlayout>
+				<textbox value="@bind(vm.textoBuscar)" hflex="1" />
+				<button label="Buscar!" iconSclass="z-icon-search" onClick="@command('buscar')" />
+			</hlayout>
+			<hlayout vflex="1" hflex="1">
+				<listbox model="@load(vm.bus)" 
+						 selectedItem="@bind(vm.busSeleccionada)" >
+					<listhead>
+						<listheader label="Placa" />
+						<listheader label="Numero"/>
+						<listheader label="Capacidad" />
+						<listheader label="Cooperativa" />
+					</listhead>
+					<template name="model">
+						<listitem>
+							<listcell label="@load(each.placa)" />
+							<listcell label="@load(each.numero)" />
+							<listcell label="@load(each.capacidad)" />
+							<listcell label="@load(each.cooperativa.nombre)" />
+						</listitem>
+					</template>
+				</listbox>
+			</hlayout>
+		</vlayout>
+	</window>
+</zk>

@@ -1,0 +1,63 @@
+<window id="winPersonaEditar" 
+		border="normal" 
+		vflex="min" 
+		width="300px" 
+		apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('com.demo.control.mvvm.UsuarioControl')" style="background:#154360"> 
+	<caption src="/iconos/team.png" height="20px" style="font-weight: bold; font-size: medium; color: #636363;" 
+			 label="Usuarios - MVVM"/>
+	<vlayout>
+		<grid>
+			<columns>
+				<column align="right" hflex="min" />
+				<column />
+			</columns>
+			
+			<rows>
+			
+				<row>
+                    <cell style="font-weight: bold; color:#636363;">Numero :</cell>
+                    <cell><label id="numero" value="@load(vm.usuario.id)"/></cell>
+                </row>
+				
+				<row>
+                    <cell style="font-weight: bold; color:#636363;">Usuario :</cell>
+                    <cell>
+                    	<textbox id="Usuario" 
+                                 value="@bind(vm.usuario.usuario)" 
+                                 width="200px"
+                                 constraint="no empty: Debe ingresar el usuario"
+                                 maxlength="255"/>
+                    </cell>
+                </row>
+				
+				<row>
+                	<cell style="font-weight: bold; color:#636363;">Nombre :</cell>
+                    <cell>
+                    	<textbox id="Nombre" 
+                                 value="@bind(vm.usuario.nombre)" 
+                                 width="200px"
+                                 maxlength="50"/>
+                    </cell>
+                </row>
+				
+				<row>
+                	<cell style="font-weight: bold; color:#636363;">Clave :</cell>
+                    <cell>
+                    	<textbox id="Clave" 
+                                 value="@bind(vm.usuario.clave)" 
+                                 width="200px"
+                                 maxlength="50"/>
+                    </cell>
+                </row>
+			
+			</rows>
+		
+		</grid>
+		
+		<hlayout>
+			<button id="grabar" label="Grabar" src="/iconos/save.png"  style="background:#FFFFFF"   onClick="@command('grabar', ventana=winPersonaEditar)"/>
+			<button id="salir"  label="Salir"  src="/iconos/cancel.png"	style="background:#FFFFFF"  onClick="@command('salir', ventana=winPersonaEditar)"/>
+		</hlayout>
+	</vlayout>
+</window>

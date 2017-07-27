@@ -1,0 +1,72 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./winPersona" ?>
+	<?page title="" contentType="text/html;charset=UTF-8"?>
+	<zk>
+		<window id="winPersona" border="normal" vflex="min" width="500px" apply="com.demo.control.mvc.PersonaControl">
+			<caption height="20px" label="Personas - MVC"
+				style="font-weight:bold; font-size:medium; color:#636363" iconSclass="z-icon-user"/>
+			<vlayout>
+				<grid>
+					<columns>
+						<column align="right" hflex="min" />
+						<column />
+					</columns>
+					<rows>
+						<row>
+							<cell>Numero:</cell>
+							<cell>
+								<label id="numero" 
+									   value="@{winPersona$composer.persona.id}"/>
+							</cell>
+						</row>
+						<row>
+							<cell>Nombre:</cell>
+							<cell>
+								<textbox id="nombre" width="200px" 
+										 value="@{winPersona$composer.persona.nombre }"/>
+							</cell>
+						</row>
+						<row>
+							<cell>Email:</cell>
+							<cell>
+								<textbox id="email" width="200px" 
+										 value="@{winPersona$composer.persona.email }"/>
+							</cell>
+						</row>
+						<row>
+							<cell>Fecha Nacimiento:</cell>
+							<cell>
+								<datebox id="fecNacimiento" width="200px" 
+										 value="@{winPersona$composer.persona.fechaNacimiento }"/>
+							</cell>
+						</row>
+						<row>
+							<cell>Pais:</cell>
+							<cell>
+								<combobox model="@{winPersona$composer.paises}"
+										  selectedItem="@{winPersona$composer.persona.pai}"
+										  value="@{winPersona$composer.persona.pai.nombre}"	
+										  width="200px">
+									<template name="model">	  
+								 		<comboitem label="${each.nombre}"
+								 				   image="${each.bandera}"/>
+								 	</template>
+								</combobox>
+							</cell>
+						</row>
+						<row>
+							<cell>Biografía:</cell>
+							<cell>
+								<textbox id="biografia" multiline="true"
+										 value="@{winPersona$composer.persona.biografia}"
+										 height="100px" hflex="1" />
+							</cell>
+						</row>
+					</rows>
+				</grid>
+				<hlayout>
+					<button id="grabar" label="Grabar" iconSclass="z-icon-save"/>
+					<button id="salir" label="Salir" iconSclass="z-icon-refresh"/>
+				</hlayout>
+			</vlayout>
+		</window>
+	</zk>

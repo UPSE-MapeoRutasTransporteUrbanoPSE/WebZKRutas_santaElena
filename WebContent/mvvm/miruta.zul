@@ -1,0 +1,92 @@
+<window id="winRuta" border="normal" vflex="min" width="580px"
+    apply="org.zkoss.bind.BindComposer"
+    viewModel="@id('vm') @init('com.demo.control.mvvm.VisitaControl')">
+    <caption src="/Img/icon1.png" height="20px"
+        style="font-weight: bold; font-size: medium; color: #636363;"
+        label="MI RUTA" />
+    <vlayout>
+        <hlayout>
+            <grid width="350px" vflex="1">
+                <columns>
+                    <column align="right" hflex="min" />
+                    <column />
+                </columns>
+                <rows>
+                
+                <row>
+                        <cell
+                            style="font-weight: bold; color:#636363;">
+                            NUMERO:
+                        </cell>
+                        <cell>
+                            <label id="numero"
+                                value="@load(vm.visita.id)" />
+                        </cell>
+                    </row>
+                    <row>
+                        <cell
+                            style="font-weight: bold; color:#636363;">
+                            FECHA :
+                        </cell>
+                        <cell>
+                            <textbox id="fecha"
+                                value="@bind(vm.visita.fecha)" width="200px"
+                                constraint="no empty: Debe ingresar el nombre" maxlength="255" />
+                        </cell>
+                    </row>
+                    
+                    <row>
+                        <cell
+                            style="font-weight: bold; color:#636363;">
+                            VALORACION :
+                        </cell>
+                        <cell>
+                            <textbox id="valoracion"
+                                value="@bind(vm.visita.valoracion)" width="200px"
+                                constraint="no empty: Debe ingresar el nombre" maxlength="255" />
+                        </cell>
+                    </row>
+                    
+                    <row>
+                        <cell
+                            style="font-weight: bold; color:#636363;">
+                            SITIO:
+                        </cell>
+                        <cell>
+                            <textbox id="sitio"
+                                value="@bind(vm.visita.sitiosIntere.descripcion)" width="200px"
+                                constraint="no empty: Debe ingresar el nombre" maxlength="255" />
+                        </cell>
+                    </row>
+                
+                </rows>
+                
+            </grid>
+            
+        </hlayout>
+        <hlayout>
+            
+            <vlayout hflex="1" vflex="1">
+                <!-- Etiqueta para el mapa -->
+                <html id="mapa" hflex="1" vflex="1" width="520px" height="400px"/>
+                
+                <!-- El Atributo personalizado es importante para que
+                     acepte actualizaciones desde el cliente -->
+                <textbox id="txtCoordenadasDomicilio" 
+                         value="@bind(vm.visita.coordenadas)" 
+                         hflex="1">
+                         <custom-attributes org.zkoss.zk.ui.updateByClient="true"/>
+                </textbox>
+                
+            </vlayout>
+        </hlayout>
+        <!-- Los iconos listados con iconSclass son de: http://fontawesome.io/icons/ -->
+        <hlayout>
+            <button id="grabar" label="Grabar" iconSclass="z-icon-save"
+                onClick="@command('grabar', ventana=winRuta)" />
+            <button id="salir" label="Salir"
+                iconSclass="z-icon-sign-out"
+                onClick="@command('salir', ventana=winRuta)" />
+        </hlayout>
+    </vlayout>
+</window>

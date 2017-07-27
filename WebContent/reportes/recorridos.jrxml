@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="recorridos" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1be86633-5dc5-40f8-917a-3020e7c94861">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Miconexion"/>
+	<queryString language="SQL">
+		<![CDATA[select r.ruta , c.nombre ,b.placa , br.fecha, r.horario from
+	rutas r, cooperativa c, buses b, busesrutas br
+	where
+	r.id = br.id_rutas and
+	b.id = br.id_buses and
+	c.id = b.id_cooperativa]]>
+	</queryString>
+	<field name="ruta" class="java.lang.String"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="placa" class="java.lang.String"/>
+	<field name="fecha" class="java.sql.Date"/>
+	<field name="horario" class="java.lang.String"/>
+	<variable name="ruta1" class="java.lang.Integer" resetType="Page" calculation="DistinctCount">
+		<variableExpression><![CDATA[$F{ruta}]]></variableExpression>
+	</variable>
+	<variable name="ruta2" class="java.lang.Integer" resetType="Page" calculation="Count">
+		<variableExpression><![CDATA[$F{ruta}]]></variableExpression>
+	</variable>
+	<variable name="nombre1" class="java.lang.Integer" resetType="Page" calculation="Count">
+		<variableExpression><![CDATA[$F{nombre}]]></variableExpression>
+	</variable>
+	<variable name="placa1" class="java.lang.Integer" resetType="Page" calculation="Count">
+		<variableExpression><![CDATA[$F{placa}]]></variableExpression>
+	</variable>
+	<variable name="fecha1" class="java.lang.Integer" resetType="Page" calculation="Count">
+		<variableExpression><![CDATA[$F{fecha}]]></variableExpression>
+	</variable>
+	<variable name="horario1" class="java.lang.Integer" resetType="Page" calculation="Count">
+		<variableExpression><![CDATA[$F{horario}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="31" splitType="Stretch">
+			<staticText>
+				<reportElement x="-10" y="0" width="100" height="20" uuid="b9ae2507-dccf-4c6b-8691-0cf0de5442a9"/>
+				<text><![CDATA[RUTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="110" y="0" width="100" height="20" uuid="ca587ba6-6838-4a54-ab2d-69fd62dc7997"/>
+				<text><![CDATA[COOPERATIVA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="230" y="0" width="100" height="20" uuid="71f1e9a5-c378-447f-9679-dc89c59395c9"/>
+				<text><![CDATA[PLACA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="350" y="0" width="100" height="20" uuid="ee22dab7-c792-47b6-baa0-2b146c7d9869"/>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="465" y="0" width="100" height="20" uuid="09cd6cad-13a9-4893-954d-4f3be945d769"/>
+				<text><![CDATA[HORARIO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="33" splitType="Stretch">
+			<textField>
+				<reportElement x="-10" y="6" width="100" height="16" uuid="602c228e-43ff-4c5e-b496-64cc8e82d284"/>
+				<textFieldExpression><![CDATA[$F{ruta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="110" y="6" width="100" height="16" uuid="53527624-4a06-427c-90cd-8b807fb76136"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="230" y="6" width="100" height="16" uuid="ed66db66-0724-4cce-90dc-68d54bf94bc4"/>
+				<textFieldExpression><![CDATA[$F{placa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="350" y="6" width="100" height="16" uuid="d357e4ed-428d-47f8-aeb7-4d55f4453e61"/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="465" y="5" width="100" height="18" uuid="88fec13a-c507-431c-b35c-d68d1e25b7bc"/>
+				<textFieldExpression><![CDATA[$F{horario}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

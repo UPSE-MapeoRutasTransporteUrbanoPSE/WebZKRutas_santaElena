@@ -1,0 +1,60 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="winMapa" title="new page title" border="normal" hflex="1" vflex="1"
+apply="org.zkoss.bind.BindComposer"
+    viewModel="@id('vm') @init('com.demo.control.mvvm.MapaControl')">
+<hlayout hflex="1" vflex="1">
+                <!-- Etiqueta para el mapa -->
+                <html id="mapa" hflex="1" vflex="1"/>
+                
+                <vlayout>
+                <!-- El Atributo personalizado es importante para que
+                     acepte actualizaciones desde el cliente -->
+                <textbox id="txtCoordenadasDomicilio" 
+                         
+                         hflex="1">
+                         <custom-attributes org.zkoss.zk.ui.updateByClient="true"/>
+                </textbox>
+                
+              <!--  <button id="like" label="LIKE" iconSclass="z-icon-save"  onClick="@command('valoracion')" /> -->
+                
+              <!--  <combobox model="@load(vm.lugares)"
+                          selectedItem="@bind(vm.lugareSeleccionada)"
+                           width="200px" > 
+                                 
+                                <template name="model" >
+                                    <comboitem 
+                                        label="@load(each.descripcion)" 
+                                        value="@load(each)" 
+                                         />
+                                </template>
+                            </combobox>-->
+                            
+                            
+           <!--       <listbox model="@load(vm.lugareSeleccionada.sitiosInteres)" 
+						 selectedItem="@bind(vm.sitiosintereSeleccionada)" 
+						 width="150px" height="150px">
+					<listhead>
+					
+						<listheader label="DESCRIPCION" align="center"/>
+						
+						
+						
+					</listhead>
+					<template name="model">
+						<listitem>
+						
+							<listcell label="@load(each.descripcion)" />
+							
+							
+						</listitem>
+					</template>
+				</listbox> -->
+                            
+                 
+                
+                
+                </vlayout>
+            </hlayout>
+</window>
+</zk>

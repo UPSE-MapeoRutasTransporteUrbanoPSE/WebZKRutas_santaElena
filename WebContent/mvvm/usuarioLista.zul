@@ -1,0 +1,38 @@
+<?page title="Lista de Usuarios" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window apply="org.zkoss.bind.BindComposer" 
+            viewModel="@id('vm') @init('com.demo.control.mvvm.UsuarioLista')"
+	        hflex="1" vflex="1" 
+	        title="Usuarios" border="normal"  style="background:#154360">
+	        <caption height="25px" style="font-weight:bold; font-size:min; color:#FDFEFE" image="/iconos/team.png"></caption>
+		<vlayout vflex="1">
+			<toolbar style="background:#F1C40F">
+				<toolbarbutton label="Nuevo"    image="/iconos/add.png"  style="background:#F1C40F"    onClick="@command('nuevo')"/>
+				<toolbarbutton label="Editar"    image="/iconos/edit.png"  style="background:#F1C40F"   onClick="@command('editar')"/>
+				<toolbarbutton label="Eliminar" image="/iconos/delete.png" style="background:#F1C40F"  onClick="@command('eliminar')"/>
+			</toolbar>
+			<hlayout>
+				<textbox value="@bind(vm.textoBuscar)" hflex="1" />
+				<button label="Buscar!" image="/iconos/search.png"  style="background:#FFFFFF" onClick="@command('buscar')" />
+			</hlayout>
+			<hlayout vflex="1" hflex="1">
+				<listbox model="@load(vm.usuarios)" 
+						 selectedItem="@bind(vm.usuarioSeleccionada)" 
+						 hflex="1" vflex="1" mold="paging" pageSize="10">
+					<listhead>
+						<listheader label="Usuario" style="background:#FFFF00"/>
+						<listheader label="Nombre" width="150px" style="background:#FFFF00"/>
+						<listheader label="Clave" style="background:#FFFF00"/>
+					</listhead>
+					<template name="model">
+						<listitem>
+							<listcell label="@load(each.usuario)" />
+							<listcell label="@load(each.nombre)" />
+							<listcell label="@load(each.clave)" />
+						</listitem>
+					</template>
+				</listbox>
+			</hlayout>
+		</vlayout>
+	</window>
+</zk>

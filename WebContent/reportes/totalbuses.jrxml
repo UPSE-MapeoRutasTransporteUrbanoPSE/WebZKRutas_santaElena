@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="totalbuses" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="32c196d8-a64d-4785-ab1d-72dac7f08db4">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Miconexion"/>
+	<queryString language="SQL">
+		<![CDATA[select c.nombre  , count(b.id) as total 
+		from cooperativa c , buses b
+		where
+		c.id = b.id_cooperativa
+		group by c.nombre]]>
+	</queryString>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="total" class="java.lang.Long"/>
+	<columnHeader>
+		<band height="50" splitType="Stretch">
+			<staticText>
+				<reportElement x="20" y="30" width="100" height="20" uuid="6a822e2b-f13b-4f9c-8377-afe9fbb4fd5c"/>
+				<text><![CDATA[Nombre Cooperativa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="30" width="100" height="20" uuid="c720f2b5-0432-4214-8ccb-8e50ea315ea5"/>
+				<text><![CDATA[# Total de Buses]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="28" splitType="Stretch">
+			<textField>
+				<reportElement x="20" y="4" width="100" height="20" uuid="43dba48c-158c-4e5f-8f01-9c36310e6928"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="4" width="100" height="20" uuid="60006eab-8a80-43af-baff-2da40ab2ffe1"/>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="251">
+			<pie3DChart>
+				<chart evaluationTime="Report">
+					<reportElement x="70" y="0" width="353" height="220" uuid="60e24066-5860-4667-8a56-856bf933ffd0"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{nombre}]]></keyExpression>
+					<valueExpression><![CDATA[$F{total}]]></valueExpression>
+					<labelExpression><![CDATA[" "+$F{total}]]></labelExpression>
+				</pieDataset>
+				<pie3DPlot>
+					<plot/>
+					<itemLabel/>
+				</pie3DPlot>
+			</pie3DChart>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,27 @@
+<zk>
+	<div hflex="1" vflex="1" align="center"  
+	
+		style="background-image: url(images/caminito.png);" height="2000px">
+		<hbox hflex="1" vflex="1" align="center">
+			<a >
+				<image src="/images/rutas.png" width="100px" />
+			</a>
+			<div width="400px">
+				<label value="RUTAS SANTA ELENA " style="font-size: 2.4em;" />
+			</div>
+						
+			<hbox hflex="1" vflex="1" pack="end" align="end">
+			<label value="@load(vm.nombreUsuario)" />
+			<h:form id="f" name="f"
+				action="j_spring_security_logout" 
+				method="POST"
+				xmlns:h="native">
+				<html>
+					<input type="hidden"  name="${_csrf.parameterName}" value="${_csrf.token}"/>
+				</html>
+				<button label="Salir" type="submit"/>
+			</h:form>
+		</hbox>
+		</hbox>
+	</div>
+</zk>

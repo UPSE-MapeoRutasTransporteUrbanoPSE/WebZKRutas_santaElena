@@ -1,0 +1,52 @@
+<window id="winLugaresEditar" border="normal" vflex="min" width="580px"
+    apply="org.zkoss.bind.BindComposer"
+    viewModel="@id('vm') @init('com.demo.control.mvvm.LugareControl')">
+    <caption src="/Img/lugar.png" height="20px"
+        style="font-weight: bold; font-size: medium; color: #636363;"
+        label="LUGARES" />
+    <vlayout>
+        <hlayout>
+            <grid width="350px" vflex="1">
+                <columns>
+                    <column align="right" hflex="min" />
+                    <column />
+                </columns>
+                <rows>
+                    <row>
+                        <cell
+                            style="font-weight: bold; color:#636363;">
+                            NUMERO :
+                        </cell>
+                        <cell>
+                            <label id="numero"
+                                value="@load(vm.lugares.id)" />
+                        </cell>
+                    </row>
+                    <row>
+                        <cell
+                            style="font-weight: bold; color:#636363;">
+                            DESCRIPCION :
+                        </cell>
+                        <cell>
+                            <textbox id="descripcion"
+                                value="@bind(vm.lugares.descripcion)" width="200px"
+                                constraint="no empty: Debe ingresar la descripcion" maxlength="255" />
+                        </cell>
+                    </row>
+                                       
+                    
+                </rows>
+            </grid>
+            
+        </hlayout>
+        
+        <!-- Los iconos listados con iconSclass son de: http://fontawesome.io/icons/ -->
+        <hlayout>
+            <button id="grabar" label="Grabar" iconSclass="z-icon-save"
+                onClick="@command('grabar', ventana=winLugaresEditar)" />
+            <button id="salir" label="Salir"
+                iconSclass="z-icon-sign-out"
+                onClick="@command('salir', ventana=winLugaresEditar)" />
+        </hlayout>
+    </vlayout>
+</window>

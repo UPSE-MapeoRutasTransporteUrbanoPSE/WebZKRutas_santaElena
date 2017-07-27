@@ -1,0 +1,40 @@
+<?page title="Lista de Personas" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window apply="org.zkoss.bind.BindComposer" 
+            viewModel="@id('vm') @init('com.demo.control.mvvm.CooperativaLista')"
+	        hflex="1" vflex="1" 
+	        title="Cooperativas - MVVM" border="normal">
+		<vlayout vflex="1">
+			<toolbar>
+				<toolbarbutton label="Nuevo"    iconSclass="z-icon-plus"     onClick="@command('nuevo')"/>
+				<toolbarbutton label="Editar"   iconSclass="z-icon-pencil"   onClick="@command('editar')"/>
+				<toolbarbutton label="# Total de buses"
+					iconSclass="z-icon-print" onClick="@command('imprimir')" />
+				
+			</toolbar>
+			<hlayout>
+				<textbox value="@bind(vm.textoBuscar)" hflex="1" />
+				<button label="Buscar!" iconSclass="z-icon-search" onClick="@command('buscar')" />
+			</hlayout>
+			<hlayout vflex="1" hflex="1">
+				<listbox model="@load(vm.cooperativa)" 
+						 selectedItem="@bind(vm.cooperativaSeleccionada)" 
+						 hflex="1" vflex="1">
+					<listhead>
+						<listheader label="Nombre" />
+						<listheader label="Direccion" width="150px"/>
+						<listheader label="Telefono" />
+						
+					</listhead>
+					<template name="model">
+						<listitem>
+							<listcell label="@load(each.nombre)" />
+							<listcell label="@load(each.direccion)" />
+							<listcell label="@load(each.telefono)" />
+						</listitem>
+					</template>
+				</listbox>
+			</hlayout>
+		</vlayout>
+	</window>
+</zk>

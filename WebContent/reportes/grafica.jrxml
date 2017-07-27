@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-02-06T11:29:28 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="grafica" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b31e28c7-47c3-415e-9530-2b7fd79f7f8d">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Miconexion"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="252"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="748"/>
+	<queryString>
+		<![CDATA[select count(br.id), r.ruta ,
+	((count(br.id) * 100) / (select count(br.id) from busesrutas br))
+	from busesrutas br , cooperativa c , buses b , rutas r 
+	where
+	c.id = b.id_cooperativa and
+	r.id = br.id_rutas and
+	b.id = br.id_buses 
+	group by r.ruta]]>
+	</queryString>
+	<field name="count" class="java.lang.Long"/>
+	<field name="ruta" class="java.lang.String"/>
+	<field name="?column?" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="100" splitType="Stretch">
+			<staticText>
+				<reportElement x="110" y="40" width="300" height="20" uuid="0481d66e-1e73-4e37-ab60-01a08da1c303">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<text><![CDATA[   PORCENTAJE DE BUSES QUE SALIERON POR RUTAS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<summary>
+		<band height="374" splitType="Stretch">
+			<pieChart>
+				<chart evaluationTime="Report">
+					<reportElement x="70" y="-20" width="360" height="300" uuid="76f7243c-6c2b-4ac9-b0e3-82a59b9b4fcf"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{ruta}]]></keyExpression>
+					<valueExpression><![CDATA[$F{count}]]></valueExpression>
+					<labelExpression><![CDATA[" "+$F{?column?}]]></labelExpression>
+				</pieDataset>
+				<piePlot>
+					<plot/>
+					<itemLabel/>
+				</piePlot>
+			</pieChart>
+		</band>
+	</summary>
+</jasperReport>

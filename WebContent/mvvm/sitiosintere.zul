@@ -1,0 +1,82 @@
+<window id="winSitiosIntereEditar" border="normal" width="580px" height="500" 
+    apply="org.zkoss.bind.BindComposer"
+    viewModel="@id('vm') @init('com.demo.control.mvvm.SitiosIntereControl')">
+    <caption src="/Img/lugar.png" height="2px" 
+        style="font-weight: bold; font-size: medium; color: #636363;"
+        label="SITIOS" />
+    <vlayout>
+        <hlayout>
+            <grid width="350px" vflex="1">
+                <columns>
+                    <column align="right" hflex="min" />
+                    <column />
+                </columns>
+                <rows>
+                    <row>
+                        <cell
+                            style="font-weight: bold; color:#636363;">
+                            NUMERO :
+                        </cell>
+                        <cell>
+                            <label id="numero"
+                                value="@load(vm.sitiosintere.id)" />
+                        </cell>
+                    </row>
+                    <row>
+                        <cell
+                            style="font-weight: bold; color:#636363;">
+                            DESCRIPCION :
+                        </cell>
+                        <cell>
+                            <textbox id="nombre"
+                                value="@bind(vm.sitiosintere.descripcion)" width="200px"
+                                constraint="no empty: Debe ingresar la descripcion" maxlength="255" />
+                        </cell>
+                    </row>
+                                       
+                    <row>
+                        <cell
+                            style="font-weight: bold; color:#636363;">
+                            LUGAR :
+                        </cell>
+                        <cell>
+                            <combobox model="@load(vm.lugares)"
+                                selectedItem="@bind(vm.sitiosintere.lugare)"
+                                value="@load(vm.sitiosintere.lugare.descripcion)" width="200px">
+                                <template name="model">
+                                    <comboitem
+                                        label="@load(each.descripcion)" 
+                                        value="@load(each)" />
+                                </template>
+                            </combobox>
+                        </cell>
+                    </row>
+                </rows>
+            </grid>
+            
+            <groupbox mold="3d" closable="false" width="200px">
+                <caption label="Foto" />
+                <div align="center">
+                    <image id="imgFoto"
+                        content="@load(vm.imagenPersona)" onClick="@command('descargar')"
+                        style="border:1px #cccccc solid; " />
+                </div>
+                <div align="center">
+                    <button id="btnUpload" label="Cargar..."
+                        upload="true" onUpload="@command('subir', upEvent=event)"
+                        iconSclass="z-icon-upload" />
+                </div>
+            </groupbox>
+            
+        </hlayout>
+        
+        <!-- Los iconos listados con iconSclass son de: http://fontawesome.io/icons/ -->
+        <hlayout>
+            <button id="grabar" label="Grabar" iconSclass="z-icon-save"
+                onClick="@command('grabar', ventana=winSitiosIntereEditar)" />
+            <button id="salir" label="Salir"
+                iconSclass="z-icon-sign-out"
+                onClick="@command('salir', ventana=winSitiosIntereEditar)" />
+        </hlayout>
+    </vlayout>
+</window>

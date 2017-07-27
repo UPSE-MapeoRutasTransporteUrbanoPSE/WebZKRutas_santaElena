@@ -1,0 +1,9 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<div hflex="1" vflex="1">
+		<vbox hflex="1" vflex="1" align="center">
+			Aplicacion de control de rutas Urbanas en zonas turisticas de la provincia de santa elena
+			<a href="http://www.upse.edu.ec">http://www.ecuador.com</a>
+		</vbox>
+	</div>
+</zk>

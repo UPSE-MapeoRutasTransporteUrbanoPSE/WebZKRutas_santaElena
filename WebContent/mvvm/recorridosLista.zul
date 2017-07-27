@@ -1,0 +1,46 @@
+<?page title="Lista de Recorridos" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('com.demo.control.mvvm.BusesRutaLista')"
+		hflex="1" vflex="1" title="Recorridos - MVVM" border="normal">
+		<vlayout vflex="1">
+			<toolbar>
+				<toolbarbutton label="Nuevo" iconSclass="z-icon-plus"
+					onClick="@command('nuevo')" />
+				<toolbarbutton label="Editar" iconSclass="z-icon-pencil"
+					onClick="@command('editar')" />
+				<toolbarbutton label="Visualizar Estadisticas"
+					iconSclass="z-icon-print" onClick="@command('imprimir')" />
+					<toolbarbutton label="imprimir reporte"
+					iconSclass="z-icon-print" onClick="@command('imprimirreporte')" />
+
+			</toolbar>
+			<hlayout>
+				<textbox value="@bind(vm.textoBuscar)" hflex="1" />
+				<button label="Buscar!" iconSclass="z-icon-search"
+					onClick="@command('buscar')" />
+			</hlayout>
+
+
+
+			<hlayout vflex="1" hflex="1">
+				<listbox model="@load(vm.recorrido)"
+					selectedItem="@bind(vm.recorridoSeleccionada)">
+					<listhead>
+						<listheader label="Fecha" />
+						<listheader label="Bus" />
+						<listheader label="Ruta" />
+					</listhead>
+					<template name="model">
+						<listitem>
+
+							<listcell label="@load(each.fecha)" />
+							<listcell label="@load(each.bus.placa)" />
+							<listcell label="@load(each.ruta.ruta)" />
+						</listitem>
+					</template>
+				</listbox>
+			</hlayout>
+		</vlayout>
+	</window>
+</zk>

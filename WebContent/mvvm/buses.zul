@@ -1,0 +1,68 @@
+<window id="winBusEditar" 
+        border="normal" 
+        vflex="min" 
+        width="500px" 
+        apply="org.zkoss.bind.BindComposer" 
+        viewModel="@id('vm') @init('com.demo.control.mvvm.BusControl')">
+	<caption src="/img/user.png" height="20px" style="font-weight: bold; font-size: medium; color: #636363;" 
+             label="Buses - MVVM"/>
+    <vlayout>
+        <grid >
+            <columns>
+                <column align="right" hflex="min"/>
+                <column/>
+            </columns>
+            <rows>
+                <row>
+                    <cell style="font-weight: bold; color:#636363;">Id :</cell>
+                    <cell><label id="id" value="@load(vm.bus.id)"/></cell>
+                </row>
+                <row>
+                    <cell style="font-weight: bold; color:#636363;">Placa :</cell>
+                    <cell><textbox id="placa" 
+                                   value="@bind(vm.bus.placa)" 
+                                   width="200px"
+                                   constraint="no empty: Debe ingresar la pLaca"
+                                   maxlength="255"/>
+                    </cell>
+                </row>
+                <row>
+                    <cell style="font-weight: bold; color:#636363;">Numero :</cell>
+                    <cell><textbox id="numero" 
+                                   value="@bind(vm.bus.numero)" 
+                                   width="200px"
+                                   maxlength="50"/>
+                    </cell>
+                </row>
+                <row>
+                    <cell style="font-weight: bold; color:#636363;">Capacidad :</cell>
+                    <cell><textbox id="capacidad" 
+                                   value="@bind(vm.bus.capacidad)" 
+                                   width="200px"
+                                   />
+                    </cell>
+                </row>
+                <row>
+                    <cell style="font-weight: bold; color:#636363;">Cooperativa :</cell>
+                    <cell>
+                        <combobox model="@load(vm.cooperativa)" 
+                                  selectedItem="@bind(vm.bus.cooperativa)" 
+                                  value="@load(vm.bus.cooperativa.nombre)" 
+                                  width="200px" >
+                             <template name="model">
+                                 <comboitem label="@load(each.nombre)"  
+                                            value="@load(each)"/>
+                             </template>
+                        </combobox>
+                    </cell>
+                </row>
+            </rows>
+        </grid>
+
+        <!-- Los iconos listados con iconSclass son de: http://fontawesome.io/icons/ -->
+        <hlayout>
+            <button id="grabar" label="Grabar" iconSclass="z-icon-save"     onClick="@command('grabar', ventana=winBusEditar)" />
+            <button id="salir"  label="Salir"  iconSclass="z-icon-sign-out" onClick="@command('salir', ventana=winBusEditar)" />
+        </hlayout>
+    </vlayout>
+</window>

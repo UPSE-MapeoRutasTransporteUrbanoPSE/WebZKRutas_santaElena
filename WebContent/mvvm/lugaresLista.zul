@@ -1,0 +1,40 @@
+<?page title="LISTA DE LUGARES" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window apply="org.zkoss.bind.BindComposer" 
+            viewModel="@id('vm') @init('com.demo.control.mvvm.LugareLista')"
+	        hflex="1" vflex="1" 
+	        title="LUGARES" border="normal">
+		<vlayout vflex="1">
+			<toolbar>
+				<toolbarbutton label="Nuevo"    iconSclass="z-icon-plus"     onClick="@command('nuevo')"/>
+				<toolbarbutton label="Editar"   iconSclass="z-icon-pencil"   onClick="@command('editar')"/>
+				
+				<separator orient="vertical" width="50px" />
+				
+			</toolbar>
+			<hlayout>
+				<textbox value="@bind(vm.textoBuscar)" hflex="1" />
+				<button label="Buscar!" iconSclass="z-icon-search" onClick="@command('buscar')" />
+			</hlayout>
+			<hlayout vflex="1" hflex="1">
+				<listbox model="@load(vm.lugares)" 
+						 selectedItem="@bind(vm.lugareeSeleccionada)" 
+						 hflex="1" vflex="1">
+					<listhead>
+					<listheader label="NUMERO" />
+						<listheader label="DESCRIPCION" />
+						
+					</listhead>
+					<template name="model">
+						<listitem>
+						<listcell label="@load(each.id)" />
+							<listcell label="@load(each.descripcion)" />
+							
+						</listitem>
+					</template>
+				</listbox>
+				
+			</hlayout>
+		</vlayout>
+	</window>
+</zk>
