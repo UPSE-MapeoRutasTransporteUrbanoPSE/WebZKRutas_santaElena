@@ -16,13 +16,14 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zul.Textbox;
 
 
 
 
-
-public class Mapa {
+@SuppressWarnings({ "unchecked", "rawtypes", "serial" })
+public class Mapa extends SelectorComposer{
 	// Clave de Google Maps:
 		private String key = "AIzaSyDlzw2oyl1QeNM8fOEIsDB3X_73Z18PnOw";
 		private Textbox coordenadas; 
@@ -35,14 +36,13 @@ public class Mapa {
 			
 			this.coordenadas = coordenadas; 
 			
-			LeerArchivo le = new LeerArchivo();
-			System.out.println("holaaaaafgdfgf ");
+			
 			
 			List<Punto> punto=new  ArrayList<>();
 			
 			
 			Punto p = new Punto();
-			 String ruta = "C:/Transcisa7.gpx";
+			 String ruta = "D:/Aplicaciones/Archivos/2017/6/30/Transcisa7.gpx";
 			  //Y generamos el objeto respecto a la ruta del archivo
 			  File archivo = new File(ruta);
 			 
@@ -66,7 +66,7 @@ public class Mapa {
 		        String puntosPaJS = "[";
 		        
 		       for(int i=0;i<punto.size();i++){
-		        	System.out.println("puntosOriginales: "+punto.get(i).toString());
+		        	//System.out.println("puntosOriginales: "+punto.get(i).toString());
 		        	//puntoss[i]=punto.get(i).toString();
 		        	if(i<punto.size()-1)
 		        	{	
@@ -91,7 +91,7 @@ public class Mapa {
 			contenido.append("function initMap() {var map = new google.maps.Map(document.getElementById('map'), {zoom: 11,center: {lat: -2.226381, lng: -80.858324},mapTypeId: 'terrain'});");	
 			//contenido.append("var flightPlanCoordinates = [{lat: -2.2316804, lng: -80.878799},{lat: -2.2231879, lng: -80.8591483},{lat: -2.220931, lng: -80.8626877},{lat: -2.2314787, lng: -80.8789409}];");
 			String puntosADibujar = "var flightPath = new google.maps.Polyline({path:"+punto+",geodesic: true,strokeColor: '#FF0000',strokeOpacity: 1.0,strokeWeight: 3});";
-			System.out.println(puntosADibujar);
+			//System.out.println(puntosADibujar);
 			contenido.append(puntosADibujar);
 			//contenido.append("var marker, poly, i;"+ for (int i = 0; i < punto.size(); i++)+" { marker = new google.maps.Marker({ position: new google.maps.LatLng("+punto.get(i).getLatitud()+", "+ punto.get(i).getLongitud()+"),map: map}); poly = new google.maps.Polyline({ path: new google.maps.LatLng("+punto.get(i).getLatitud()+", "+ punto.get(i).getLongitud()+"),strokeColor: '#000000',strokeOpacity: 1.0,strokeWeight: 3});})(marker,"+i+"));}}");
 			
@@ -100,6 +100,11 @@ public class Mapa {
 			contenido.append("}</script></body>"); 
 			return contenido.toString();
 		}
+		
+		
+		
+		
+		
 		
 		
 		public String getKey() {

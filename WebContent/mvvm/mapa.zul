@@ -1,3 +1,4 @@
+
 <?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk>
 <window id="winMapa" title="new page title" border="normal" hflex="1" vflex="1"
@@ -16,43 +17,36 @@ apply="org.zkoss.bind.BindComposer"
                          <custom-attributes org.zkoss.zk.ui.updateByClient="true"/>
                 </textbox>
                 
-              <!--  <button id="like" label="LIKE" iconSclass="z-icon-save"  onClick="@command('valoracion')" /> -->
+           
+           
+            
+    
+       
+    
+    <groupbox mold="3d" closable="false" width="200px">
+                <button id="btnUpload" label="CARGAR RUTA"
+                        upload="true" onUpload="@command('subir', upEvent=event)"
+                        iconSclass="z-icon-upload" />
+                        
+                        <button id="reducir" label="REDUCIR" iconSclass="z-icon-file"     onClick="@command('reducir')" /> 
+    
+    <button id="descargar" label="DSECARGAR ARCVHIVO" iconSclass="z-icon-download"     onClick="@command('descargar')" /> 
                 
-              <!--  <combobox model="@load(vm.lugares)"
-                          selectedItem="@bind(vm.lugareSeleccionada)"
-                           width="200px" > 
-                                 
-                                <template name="model" >
-                                    <comboitem 
-                                        label="@load(each.descripcion)" 
-                                        value="@load(each)" 
-                                         />
-                                </template>
-                            </combobox>-->
-                            
-                            
-           <!--       <listbox model="@load(vm.lugareSeleccionada.sitiosInteres)" 
-						 selectedItem="@bind(vm.sitiosintereSeleccionada)" 
-						 width="150px" height="150px">
-					<listhead>
-					
-						<listheader label="DESCRIPCION" align="center"/>
-						
-						
-						
-					</listhead>
-					<template name="model">
-						<listitem>
-						
-							<listcell label="@load(each.descripcion)" />
-							
-							
-						</listitem>
-					</template>
-				</listbox> -->
-                            
-                 
-                
+            </groupbox>
+    
+    
+    
+ 
+       
+    <!--      <button label="DESCARGAR GPX">
+    <attribute name="onClick">{    
+                java.io.InputStream is = desktop.getWebApp().getResourceAsStream("/test/2017/6/29/Transcisa7.gpx");                
+    if (is != null)    
+Filedownload.save(is, "text/gpx", "Transcisa7.gpx");
+    else    
+        alert("/test/2017/6/29/Transcisa7.gpx not found");        
+    }</attribute>    
+</button>   -->          
                 
                 </vlayout>
             </hlayout>

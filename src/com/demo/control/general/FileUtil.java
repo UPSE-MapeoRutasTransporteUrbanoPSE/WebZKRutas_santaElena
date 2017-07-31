@@ -22,7 +22,7 @@ import org.zkoss.zul.Filedownload;
 public class FileUtil {
 	
 	// Ruta donde esta el respositorio de archivos.
-	public static String PATH_ARCHIVO_DIGITAL = "/tmp/";
+	public static String PATH_ARCHIVO_DIGITAL = "D:/Aplicaciones/Archivos/";
 
 	/**
 	 * Almacena un archivo en el repositorio y retorna el path de archivo cargado. 
