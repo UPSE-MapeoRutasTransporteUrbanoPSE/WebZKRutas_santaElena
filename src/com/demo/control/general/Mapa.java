@@ -42,7 +42,7 @@ public class Mapa extends SelectorComposer{
 			
 			
 			Punto p = new Punto();
-			 String ruta = "D:/Aplicaciones/Archivos/2017/6/30/Transcisa7.gpx";
+			 String ruta = "D:/Aplicaciones/Archivos/2017/7/9/Transcisa7.gpx";
 			  //Y generamos el objeto respecto a la ruta del archivo
 			  File archivo = new File(ruta);
 			 

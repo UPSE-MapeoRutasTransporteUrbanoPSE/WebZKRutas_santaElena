@@ -30,7 +30,7 @@ public class GpxEscritura {
 	
 		public static void CrearArchivo(List<Punto> puntos) throws IOException, ParserConfigurationException{
 			
-			String lat=null,lon=null,ruta="D:/Aplicaciones/Archivos/2017/6/30/archivo.gpx";
+			String lat=null,lon=null,ruta="D:/Aplicaciones/Archivos/2017/7/9/archivo.gpx";
 			
 			Document document = null;
 			

@@ -31,6 +31,8 @@ apply="org.zkoss.bind.BindComposer"
                         <button id="reducir" label="REDUCIR" iconSclass="z-icon-file"     onClick="@command('reducir')" /> 
     
     <button id="descargar" label="DSECARGAR ARCVHIVO" iconSclass="z-icon-download"     onClick="@command('descargar')" /> 
+    
+    <button id="mostrar" label="MOSTRAR BUSES" iconSclass="z-icon-view"     onClick="@command('mostrar')" />
                 
             </groupbox>
     

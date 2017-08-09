@@ -15,6 +15,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.zkoss.bind.BindContext;
+import org.zkoss.bind.BindUtils;
 import org.zkoss.bind.annotation.AfterCompose;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.ContextParam;
@@ -52,6 +53,7 @@ import com.demo.control.general.FileUtil;
 import com.demo.control.general.GMaps;
 import com.demo.control.general.LeerArchivo;
 import com.demo.control.general.Mapa;
+import com.demo.control.general.Marcador;
 import com.demo.modelo.Lugare;
 import com.demo.modelo.LugareDAO;
 import com.demo.modelo.SitiosIntere;
@@ -76,10 +78,11 @@ import com.demo.control.general.Util;
 
 @SuppressWarnings({ "unchecked", "rawtypes", "serial" })
 public class MapaControl extends SelectorComposer{
-	public static int a,b;
+	public static int a=3,b;
 		
 	@Wire Html mapa;
 	Mapa gmap =new Mapa();
+	Marcador gmar =new Marcador();
 	GMaps gmaps =new GMaps();
 	@Wire Textbox txtCoordenadasDomicilio;
 	private Visita visita;
@@ -119,16 +122,27 @@ public class MapaControl extends SelectorComposer{
         
         System.out.println("entro con a valor :"+a);
         
-    if(a==1){
+        if(a==2){
+    		mapa.setContent(gmar.getMapaHtml(txtCoordenadasDomicilio));
+    		System.out.println("dibujo marcador con ruta");
+    	}
+        if(a==1){
+    	
     	mapa.setContent(gmap.getMapaHtml(txtCoordenadasDomicilio));
     	System.out.println("aki");
-    }else{
+    	
+    	
+    }
+        
+        if(a==3){
     	mapa.setContent(gmaps.getMapaHtml(txtCoordenadasDomicilio));
+    	System.out.println("dibujo marcador solo");
+    	System.out.println("a tiene avlro de "+ a);
     }
         
         	
-        	
-        	 
+    
+    
         	
         
         	
@@ -173,6 +187,7 @@ public class MapaControl extends SelectorComposer{
    //subir archivos y cargarlos en el mapa
    
    @Command
+   @NotifyChange("mapa")
    public void subir(@ContextParam(ContextType.BIND_CONTEXT) BindContext contexto) {
        
        String pathRetornado; 
@@ -186,16 +201,26 @@ public class MapaControl extends SelectorComposer{
        a=1;
        System.out.println("se fue con valor : "+a);
        Clients.showNotification("Ruta Cargarada con exito!...Refresque la Pagina >P");
-       
+       Executions.sendRedirect("");
    }
    
+   
+   @Command
+   @NotifyChange("mapa")
+   public void mostrar(@ContextParam(ContextType.BIND_CONTEXT) BindContext contexto) {
+
+       a=2;
+       System.out.println("se fue con valor : "+a+"de marcador");
+       Clients.showNotification("BUS SOBRE RUTA CARGADO");
+       Executions.sendRedirect("");
+   }
    
    @Command
    public void descargar() {
 	   if( b==0 || a==0){
 		   Clients.showNotification("NO SE HA SELEECIONADO UN ARCHIVO PARA EL PROCESO"); 
 	   }else{
-		   FileUtil.descargaArchivo("D:/Aplicaciones/Archivos/2017/6/30/archivo.gpx");
+		   FileUtil.descargaArchivo("D:/Aplicaciones/Archivos/2017/7/7/archivo.gpx");
 	   }
        
            

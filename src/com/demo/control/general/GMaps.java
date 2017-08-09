@@ -25,6 +25,7 @@ public class GMaps {
 		// Valor por defecto de las coordenadas 
 		if (coordenadas.getValue().isEmpty()) {
 			coordenadas.setValue("lat:-2.232,lng:-80.879");
+			System.out.println("se carga el mapa");
 		}
 		
 		this.coordenadas = coordenadas; 
